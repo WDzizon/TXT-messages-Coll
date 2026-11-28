@@ -1,11 +1,21 @@
 cd ~/lod-server-support-lod-only &&
 > git pull --ff-only origin feat/lod-only-preservation-1.21.1 &&
 > git log -1 --oneline &&
-> ./gradlew --console=plain :common:test :neoforge:test :neoforge:compileGametestJava :neoforge:runGameTestServer :neoforge:build
+> ./gradlew --console=plain :neoforge:compileGametestJava :neoforge:runGameTestServer
+remote: Enumerating objects: 29, done.
+remote: Counting objects: 100% (29/29), done.
+remote: Compressing objects: 100% (10/10), done.
+remote: Total 15 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (15/15), 2.51 KiB | 82.00 KiB/s, done.
 From https://github.com/WDzizon/lod-server-support-lod-only
  * branch                feat/lod-only-preservation-1.21.1 -> FETCH_HEAD
-Already up to date.
-263d6a098 (HEAD -> feat/lod-only-preservation-1.21.1, origin/feat/lod-only-preservation-1.21.1) Test metadata inspector against vanilla chunk serialization
+   263d6a098..3ded13320  feat/lod-only-preservation-1.21.1 -> origin/feat/lod-only-preservation-1.21.1
+Updating 263d6a098..3ded13320
+Fast-forward
+ docs/planning/lod-only-preservation-plan.md                                                     | 37 ++++++++++++++++++++++++++++++++++---
+ neoforge/src/gametest/java/dev/vox/lss/neoforge/gametest/LodOnlyStagedAnvilPayloadGameTest.java | 24 +++++++++++++++++++++++-
+ 2 files changed, 57 insertions(+), 4 deletions(-)
+3ded13320 (HEAD -> feat/lod-only-preservation-1.21.1, origin/feat/lod-only-preservation-1.21.1) Report vanilla chunk metadata mismatch details in GameTest
 
 > Configure project :fabric
 Fabric Loom: 1.17.13
@@ -20,42 +30,44 @@ Targeting Minecraft '1.21.1' on a 'SERVER' platform
 > Task :common:processResources UP-TO-DATE
 > Task :common:classes UP-TO-DATE
 > Task :common:shadowJar UP-TO-DATE
-> Task :common:compileTestFixturesJava UP-TO-DATE
-> Task :common:processTestFixturesResources UP-TO-DATE
-> Task :common:testFixturesClasses UP-TO-DATE
-> Task :common:testFixturesJar UP-TO-DATE
-> Task :common:compileTestJava UP-TO-DATE
-> Task :common:processTestResources UP-TO-DATE
-> Task :common:testClasses UP-TO-DATE
-> Task :common:test UP-TO-DATE
 > Task :neoforge:createMinecraftArtifacts UP-TO-DATE
 > Task :neoforge:compileJava UP-TO-DATE
 > Task :neoforge:processResources UP-TO-DATE
 > Task :neoforge:classes UP-TO-DATE
-> Task :neoforge:jarJar NO-SOURCE
-> Task :neoforge:jar SKIPPED
-> Task :neoforge:generateJarJarMetadata UP-TO-DATE
-> Task :neoforge:shadowJar UP-TO-DATE
-> Task :neoforge:compileTestJava UP-TO-DATE
-> Task :neoforge:processTestResources NO-SOURCE
-> Task :neoforge:testClasses UP-TO-DATE
-> Task :neoforge:test UP-TO-DATE
-> Task :neoforge:compileGametestJava UP-TO-DATE
+
+> Task :neoforge:compileGametestJava
+/home/wdzizon/lod-server-support-lod-only/neoforge/src/gametest/java/dev/vox/lss/neoforge/gametest/LSSNeoGameTests.java:292: warning: [removal] makeMockServerPlayerInLevel() in GameTestHelper has been deprecated and marked for removal
+            var firstPlayer = helper.makeMockServerPlayerInLevel();
+                                    ^
+/home/wdzizon/lod-server-support-lod-only/neoforge/src/gametest/java/dev/vox/lss/neoforge/gametest/LSSNeoGameTests.java:313: warning: [removal] makeMockServerPlayerInLevel() in GameTestHelper has been deprecated and marked for removal
+            var secondPlayer = helper.makeMockServerPlayerInLevel();
+                                     ^
+/home/wdzizon/lod-server-support-lod-only/neoforge/src/gametest/java/dev/vox/lss/neoforge/gametest/LSSNeoGameTests.java:430: warning: [removal] makeMockServerPlayerInLevel() in GameTestHelper has been deprecated and marked for removal
+        var player = helper.makeMockServerPlayerInLevel();
+                           ^
+/home/wdzizon/lod-server-support-lod-only/neoforge/src/gametest/java/dev/vox/lss/neoforge/gametest/LSSNeoGameTests.java:446: warning: [removal] makeMockServerPlayerInLevel() in GameTestHelper has been deprecated and marked for removal
+        var player = helper.makeMockServerPlayerInLevel();
+                           ^
+/home/wdzizon/lod-server-support-lod-only/neoforge/src/gametest/java/dev/vox/lss/neoforge/gametest/LSSNeoGameTests.java:463: warning: [removal] makeMockServerPlayerInLevel() in GameTestHelper has been deprecated and marked for removal
+        var player = helper.makeMockServerPlayerInLevel();
+                           ^
+5 warnings
+
 > Task :neoforge:processGametestResources UP-TO-DATE
-> Task :neoforge:gametestClasses UP-TO-DATE
+> Task :neoforge:gametestClasses
 > Task :neoforge:downloadAssets UP-TO-DATE
 > Task :neoforge:writeGameTestServerLegacyClasspath UP-TO-DATE
 > Task :neoforge:prepareGameTestServerRun UP-TO-DATE
 
 > Task :neoforge:runGameTestServer
 WARN StatusConsoleListener Advanced terminal features are not available in this environment
-[02:21:16] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.45, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.267, --fml.neoFormVersion, 20240808.144430]
-[02:21:16] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: JVM identified as Ubuntu OpenJDK 64-Bit Server VM 21.0.13.1+2-1-24.04.1-Ubuntu
-[02:21:16] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.13.1 by Ubuntu; OS Linux arch amd64 version 6.18.40.1-microsoft-standard-WSL2
-[02:21:16] [main/INFO] [ne.ne.fm.lo.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev
-[02:21:16] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/home/wdzizon/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.4+mixin.0.8.7/26d01f0567ab46e9ca0d2ed89d0ecc11aadbd433/sponge-mixin-0.16.4+mixin.0.8.7.jar%2398!/ Service=ModLauncher Env=SERVER
-[02:21:17] [main/INFO] [ne.ne.fm.lo.mo.lo.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
-[02:21:17] [main/INFO] [ne.ne.fm.lo.mo.ModDiscoverer/]:
+[02:25:13] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeserverdev, --gameDir, ., --fml.fmlVersion, 4.0.45, --fml.mcVersion, 1.21.1, --fml.neoForgeVersion, 21.1.267, --fml.neoFormVersion, 20240808.144430]
+[02:25:13] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: JVM identified as Ubuntu OpenJDK 64-Bit Server VM 21.0.13.1+2-1-24.04.1-Ubuntu
+[02:25:13] [main/INFO] [cp.mo.mo.Launcher/MODLAUNCHER]: ModLauncher 11.0.5+main.901c6ea8 starting: java version 21.0.13.1 by Ubuntu; OS Linux arch amd64 version 6.18.40.1-microsoft-standard-WSL2
+[02:25:13] [main/INFO] [ne.ne.fm.lo.ImmediateWindowHandler/]: ImmediateWindowProvider not loading because launch target is forgeserverdev
+[02:25:13] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=union:/home/wdzizon/.gradle/caches/modules-2/files-2.1/net.fabricmc/sponge-mixin/0.16.4+mixin.0.8.7/26d01f0567ab46e9ca0d2ed89d0ecc11aadbd433/sponge-mixin-0.16.4+mixin.0.8.7.jar%2398!/ Service=ModLauncher Env=SERVER
+[02:25:13] [main/INFO] [ne.ne.fm.lo.mo.lo.JarInJarDependencyLocator/]: Found 2 dependencies adding them to mods collection
+[02:25:13] [main/INFO] [ne.ne.fm.lo.mo.ModDiscoverer/]:
      Mod List:
                 Name Version (Mod Id)
 
@@ -63,65 +75,68 @@ WARN StatusConsoleListener Advanced terminal features are not available in this 
                 LSS NeoForge GameTests 1.0.0 (lsstest)
                 Minecraft 1.21.1 (minecraft)
                 NeoForge 21.1.267 (neoforge)
-[02:21:17] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
-[02:21:17] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, .]
-[02:21:18] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
-[02:21:23] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[02:21:23] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
-[02:21:23] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[02:21:23] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
-[02:21:23] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
-[02:21:23] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.267, for MC 1.21.1
-[02:21:24] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
-[02:21:24] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/home/wdzizon/lod-server-support-lod-only/neoforge/build/moddev/artifacts/neoforge-21.1.267.jar%23132!/assets/.mcassetsroot' uses unexpected schema
-[02:21:24] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/home/wdzizon/lod-server-support-lod-only/neoforge/build/moddev/artifacts/neoforge-21.1.267.jar%23132!/data/.mcassetsroot' uses unexpected schema
-[02:21:24] [main/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: [lsstest]
-[02:21:25] [main/INFO] [minecraft/RecipeManager]: Loaded 1291 recipes
-[02:21:25] [main/INFO] [minecraft/AdvancementTree]: Loaded 1400 advancements
-[02:21:26] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
-[02:21:26] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 2%
-[02:21:26] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 206 ms
-[02:21:26] [Server thread/INFO] [minecraft/GameTestServer]: Started game test server
-[02:21:26] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
-[02:21:26] [Server thread/INFO] [LSS/]: LOD-only durable archive ready: LOD-only archive: state=ready schema=2 queue=0/4096 visit_history=positive-only absence=unknown invalidations_pending=0 invalidation_jobs=0/0/0 invalidation_batches=0 archive_write_batches=0 invalidation_active=false invalidation_last_started_age_ms=-1 invalidation_last_completed_age_ms=-1 egress_invalidation_blocked=false egress_visit_publication_blocked=false archive_untrusted=false session_visits=0 session_visit_overflow=false session_invalidations=0 session_invalidation_overflow=false tracking_started_ms=1795886486740
-[02:21:26] [Server thread/INFO] [LSS/]: Starting LSS LOD request processing service
-[02:21:27] [Server thread/INFO] [LSS/]: LOD store active (driver=private/3.49.1.0). It stores served LOD bytes under <world>/lss-lod/ and, once fully warmed, occupies roughly as much space as the region files themselves. It is DERIVED data — deleting lss-lod/ is always safe. Set storage.lod_store.enabled to false and restart to disable; storage.lod_store.max_size_mib bounds its size after reload.
-[02:21:27] [Server thread/INFO] [LSS/]: Effective config: useNbtTranscode=true, diskReaderThreads=3, useCompressedColumns=true, useBackgroundReadSplit=true, useSelectiveNbtParse=true, maxConcurrentDiskReads=2
-[02:21:27] [LSS LOD Store SQLite/INFO] [LSS/]: LOD store sweep [minecraft:overworld]: 2 changed region(s), dropped 0 stale + 0 vanished-region row(s)
-[02:21:27] [LSS Store Backfill/INFO] [LSS/]: Store backfill: 92 region(s) to process, estimated ~52 MB of new deposits (uncapped)
-[02:21:27] [Server thread/INFO] [LSS/]: Dirty content filter: seeded 49 already-loaded chunk(s)
-[02:21:27] [Server thread/INFO] [minecraft/GameTestServer]: 45 tests are now running at position -14335505, -59, -7104932!
-[02:21:27] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStagedAnvilMetadata:0' (4 tests)...
-[02:21:27] [Server thread/INFO] [minecraft/GameTestServer]: [                                             ]
-[02:21:28] [Server thread/ERROR] [minecraft/LogTestReporter]: inspectsmetadataproducedbyminecraftchunkserializer failed at -14335499, -60, -7104932! Minecraft ChunkSerializer metadata schema GameTest failed: AssertionError: metadata inspector rejected the actual Minecraft ChunkSerializer schema
-[02:21:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X+                                          ]
-[02:21:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyPoiMutation:0' (1 tests)...
-[02:21:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X++                                         ]
-[02:21:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyArchiveLifecycle:0' (1 tests)...
-[02:21:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++                                        ]
-[02:21:28] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 1 at (1.5, -60.0, 3.5)
-[02:21:28] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
-[02:21:28] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 2 at (-1.5, -60.0, 2.5)
-[02:21:28] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
-[02:21:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlySideStoreCombined:0' (1 tests)...
-[02:21:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++                                       ]
-[02:21:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStagedAnvilNbt:0' (3 tests)...
-[02:21:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++                                      ]
-[02:21:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++                                     ]
-[02:21:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyChunkMapMutation:0' (1 tests)...
-[02:21:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++                                   ]
-[02:21:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'defaultBatch:0' (12 tests)...
-[02:21:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++                                  ]
-[02:21:29] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 4 at (-2.5, -60.0, 3.5)
-[02:21:29] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
-[02:21:29] [Server thread/INFO] [LSS/]: LSS handshake received from test-mock-player (protocol v20, capabilities=1)
-[02:21:29] [Server thread/INFO] [LSS/]: Player test-mock-player registered for LSS LOD request processing (caps=1)
-[02:21:29] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 5 at (-0.5, -60.0, 7.5)
-[02:21:29] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
-[02:21:29] [Server thread/INFO] [LSS/]: LSS handshake received from test-mock-player (protocol v9999, capabilities=1)
-[02:21:29] [Server thread/WARN] [LSS/]: Player test-mock-player has incompatible LSS protocol version 9999 (server: 20), skipping LOD distribution
-[02:21:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++     +++                          ]
-[02:21:30] [Server thread/WARN] [LSS/]: Auxiliary snapshot eligibility inspection failed; normal LOD delivery continues without archiving
+[02:25:14] [main/INFO] [mixin/]: Compatibility level set to JAVA_21
+[02:25:14] [main/INFO] [cp.mo.mo.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeserverdev' with arguments [--gameDir, .]
+[02:25:15] [main/INFO] [MixinExtras|Service/]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[02:25:20] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[02:25:20] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[02:25:20] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[02:25:20] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[02:25:20] [main/WARN] [minecraft/Commands]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[02:25:20] [modloading-worker-0/INFO] [ne.ne.ne.co.NeoForgeMod/NEOFORGE-MOD]: NeoForge mod loading, version 21.1.267, for MC 1.21.1
+[02:25:20] [main/INFO] [mojang/YggdrasilAuthenticationService]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[02:25:20] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/home/wdzizon/lod-server-support-lod-only/neoforge/build/moddev/artifacts/neoforge-21.1.267.jar%23132!/assets/.mcassetsroot' uses unexpected schema
+[02:25:20] [main/WARN] [minecraft/VanillaPackResourcesBuilder]: Assets URL 'union:/home/wdzizon/lod-server-support-lod-only/neoforge/build/moddev/artifacts/neoforge-21.1.267.jar%23132!/data/.mcassetsroot' uses unexpected schema
+[02:25:20] [main/INFO] [ne.ne.ne.ga.GameTestHooks/]: Enabled Gametest Namespaces: [lsstest]
+[02:25:21] [main/INFO] [minecraft/RecipeManager]: Loaded 1291 recipes
+[02:25:22] [main/INFO] [minecraft/AdvancementTree]: Loaded 1400 advancements
+[02:25:22] [Server thread/INFO] [minecraft/MinecraftServer]: Preparing start region for dimension minecraft:overworld
+[02:25:22] [worldgen/INFO] [minecraft/LoggerChunkProgressListener]: Preparing spawn area: 2%
+[02:25:23] [Server thread/INFO] [minecraft/LoggerChunkProgressListener]: Time elapsed: 146 ms
+[02:25:23] [Server thread/INFO] [minecraft/GameTestServer]: Started game test server
+[02:25:23] [Server thread/INFO] [ne.ne.ne.se.pe.PermissionAPI/]: Successfully initialized permission handler neoforge:default_handler
+[02:25:23] [Server thread/INFO] [LSS/]: LOD-only durable archive ready: LOD-only archive: state=ready schema=2 queue=0/4096 visit_history=positive-only absence=unknown invalidations_pending=0 invalidation_jobs=0/0/0 invalidation_batches=0 archive_write_batches=0 invalidation_active=false invalidation_last_started_age_ms=-1 invalidation_last_completed_age_ms=-1 egress_invalidation_blocked=false egress_visit_publication_blocked=false archive_untrusted=false session_visits=0 session_visit_overflow=false session_invalidations=0 session_invalidation_overflow=false tracking_started_ms=1795886723396
+[02:25:23] [Server thread/INFO] [LSS/]: Starting LSS LOD request processing service
+[02:25:23] [Server thread/INFO] [LSS/]: LOD store active (driver=private/3.49.1.0). It stores served LOD bytes under <world>/lss-lod/ and, once fully warmed, occupies roughly as much space as the region files themselves. It is DERIVED data — deleting lss-lod/ is always safe. Set storage.lod_store.enabled to false and restart to disable; storage.lod_store.max_size_mib bounds its size after reload.
+[02:25:23] [Server thread/INFO] [LSS/]: Effective config: useNbtTranscode=true, diskReaderThreads=3, useCompressedColumns=true, useBackgroundReadSplit=true, useSelectiveNbtParse=true, maxConcurrentDiskReads=2
+[02:25:23] [LSS LOD Store SQLite/INFO] [LSS/]: LOD store sweep [minecraft:overworld]: 3 changed region(s), dropped 0 stale + 0 vanished-region row(s)
+[02:25:23] [LSS Store Backfill/INFO] [LSS/]: Store backfill: 90 region(s) to process, estimated ~50 MB of new deposits (uncapped)
+[02:25:23] [Server thread/INFO] [LSS/]: Dirty content filter: seeded 49 already-loaded chunk(s)
+[02:25:23] [Server thread/INFO] [minecraft/GameTestServer]: 45 tests are now running at position 1048266, -59, 11470032!
+[02:25:24] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStagedAnvilMetadata:0' (4 tests)...
+[02:25:24] [Server thread/INFO] [minecraft/GameTestServer]: [                                             ]
+[02:25:24] [Server thread/INFO] [minecraft/GameTestServer]: [+                                            ]
+[02:25:24] [Server thread/ERROR] [minecraft/LogTestReporter]: inspectsmetadataproducedbyminecraftchunkserializer failed at 1048272, -60, 11470032! Minecraft ChunkSerializer metadata schema GameTest failed: AssertionError: metadata inspector rejected the actual Minecraft ChunkSerializer schema: inspector reason=structures.references compound is missing or has the wrong tag type; DataVersion=3955; xPos=65517; zPos=716877; Status=minecraft:full; root keys=[Status, zPos, block_entities, yPos, LastUpdate, structures, InhabitedTime, xPos, Heightmaps, sections, isLightOn, block_ticks, PostProcessing, DataVersion, fluid_ticks]; structures.keys=[References, starts], structures.starts=CompoundTag(id=10), structures.references=missing; block_entities=ListTag(id=9)
+[02:25:24] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyPoiMutation:0' (1 tests)...
+[02:25:24] [Server thread/INFO] [minecraft/GameTestServer]: [+X++                                         ]
+[02:25:24] [Server thread/INFO] [minecraft/GameTestServer]: [+X++                                         ]
+[02:25:24] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyArchiveLifecycle:0' (1 tests)...
+[02:25:24] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++                                        ]
+[02:25:24] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 1 at (-7.5, -60.0, -3.5)
+[02:25:24] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
+[02:25:24] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 2 at (4.5, -60.0, -3.5)
+[02:25:24] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
+[02:25:24] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlySideStoreCombined:0' (1 tests)...
+[02:25:24] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++                                       ]
+[02:25:24] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStagedAnvilNbt:0' (3 tests)...
+[02:25:25] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++                                      ]
+[02:25:25] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyChunkMapMutation:0' (1 tests)...
+[02:25:25] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++                                   ]
+[02:25:25] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'defaultBatch:0' (12 tests)...
+[02:25:25] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++                                  ]
+[02:25:26] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 4 at (-3.5, -60.0, -3.5)
+[02:25:26] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
+[02:25:26] [Server thread/INFO] [LSS/]: LSS handshake received from test-mock-player (protocol v20, capabilities=0)
+[02:25:26] [Server thread/INFO] [LSS/]: Player test-mock-player has no LOD consumer (caps=0), skipping LOD registration
+[02:25:26] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 5 at (5.5, -60.0, 5.5)
+[02:25:26] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
+[02:25:26] [Server thread/INFO] [LSS/]: LSS handshake received from test-mock-player (protocol v20, capabilities=1)
+[02:25:26] [Server thread/INFO] [LSS/]: Player test-mock-player registered for LSS LOD request processing (caps=1)
+[02:25:26] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 6 at (2.5, -60.0, 4.5)
+[02:25:26] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
+[02:25:26] [Server thread/INFO] [LSS/]: LSS handshake received from test-mock-player (protocol v9999, capabilities=1)
+[02:25:26] [Server thread/WARN] [LSS/]: Player test-mock-player has incompatible LSS protocol version 9999 (server: 20), skipping LOD distribution
+[02:25:26] [Server thread/WARN] [LSS/]: Auxiliary snapshot eligibility inspection failed; normal LOD delivery continues without archiving
 java.lang.IllegalStateException: synthetic metadata observer failure
         at TRANSFORMER/lsstest@1.0.0/dev.vox.lss.neoforge.gametest.LSSNeoGameTests.lambda$generationObserverFailurePreservesNormalResult$7(LSSNeoGameTests.java:407) ~[%23134!/:?] {re:classloading}
         at TRANSFORMER/lss@0.23.0/dev.vox.lss.networking.server.ChunkGenerationService.tick(ChunkGenerationService.java:249) ~[%23135!/:?] {re:classloading}
@@ -142,66 +157,65 @@ java.lang.IllegalStateException: synthetic metadata observer failure
         at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:707) ~[neoforge-21.1.267.jar%23132!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:lss.neoforge.mixins.json:ServerStopCompletionHook from mod lss,pl:mixin:A}
         at TRANSFORMER/minecraft@1.21.1/net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:267) ~[neoforge-21.1.267.jar%23132!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:lss.neoforge.mixins.json:ServerStopCompletionHook from mod lss,pl:mixin:A}
         at java.base/java.lang.Thread.run(Thread.java:1583) [?:?] {}
-[02:21:30] [Server thread/INFO] [minecraft/PlayerList]: test-mock-player[embedded] logged in with entity id 6 at (-3.5, -60.0, 7.5)
-[02:21:30] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player joined the game
-[02:21:30] [Server thread/INFO] [LSS/]: LSS handshake received from test-mock-player (protocol v20, capabilities=0)
-[02:21:30] [Server thread/INFO] [LSS/]: Player test-mock-player has no LOD consumer (caps=0), skipping LOD registration
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlySideStoreLifecycle:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++                      ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyCoordinatedRemoval:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++                     ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++                     ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityStored:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++                    ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyOfflineInspectionSession:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++                   ]
-[02:21:33] [Server thread/WARN] [minecraft/RegionFile]: Region file /tmp/lss-offline-inspection-staging-11600901510635087714/.lss-offline-stage-13476115559499313123/region/r.0.0.mca has truncated header: 1
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityMutation:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++                  ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityWorkerGate:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++                 ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStagedAnvilPayload:0' (4 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++                ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++  +            ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyPoiWorkerGate:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++            ]
-[02:21:33] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyBroadcast:0' (1 tests)...
-[02:21:33] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++           ]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyLiveChunkMapRemoval:0' (1 tests)...
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++          ]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityAdmission:0' (1 tests)...
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++++         ]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStorage:0' (6 tests)...
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++++        ]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyOfflineWorldSessionLease:0' (1 tests)...
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++++++++++  ]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyTicketMutation:0' (1 tests)...
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++++++++++++ ]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++++++++++++]
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: ========= 45 GAME TESTS COMPLETE IN 7.173 s ======================
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]:    - inspectsmetadataproducedbyminecraftchunkserializer
-[02:21:34] [Server thread/INFO] [minecraft/GameTestServer]: ====================================================
-[02:21:34] [Server thread/INFO] [LSS/]: Stopping LSS LOD generation admissions before final world save
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
-[02:21:34] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: test-mock-player lost connection: Server closed
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player left the game
-[02:21:34] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: test-mock-player lost connection: Server closed
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player left the game
-[02:21:34] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: test-mock-player lost connection: Server closed
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player left the game
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
-[02:21:34] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:overworld
-[02:21:38] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_end
-[02:21:38] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_nether
-[02:21:38] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (world): All chunks are saved
-[02:21:38] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
-[02:21:38] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
-[02:21:38] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
-[02:21:38] [Server thread/INFO] [LSS/]: Stopping LSS LOD request processing service
-[02:21:38] [LSS Store Backfill/INFO] [LSS/]: Store backfill stopped: 8 regions, 51 deposited, 1868 skipped, 0 errors, 2 pauses
-[02:21:38] [Server thread/INFO] [minecraft/GameTestServer]: Game test server shutting down
+[02:25:26] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++_+++++++++                      ]
+[02:25:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlySideStoreLifecycle:0' (1 tests)...
+[02:25:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++                      ]
+[02:25:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyCoordinatedRemoval:0' (1 tests)...
+[02:25:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++                     ]
+[02:25:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++                     ]
+[02:25:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityStored:0' (1 tests)...
+[02:25:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++                    ]
+[02:25:28] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyOfflineInspectionSession:0' (1 tests)...
+[02:25:28] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++                   ]
+[02:25:28] [Server thread/WARN] [minecraft/RegionFile]: Region file /tmp/lss-offline-inspection-staging-2306516399414945207/.lss-offline-stage-16793849000040110278/region/r.0.0.mca has truncated header: 1
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityMutation:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++                  ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityWorkerGate:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++                 ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++                 ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStagedAnvilPayload:0' (4 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++                ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyPoiWorkerGate:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++            ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++            ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyBroadcast:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++           ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyLiveChunkMapRemoval:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++          ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyEntityAdmission:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++++         ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyStorage:0' (6 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++++        ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++++++++     ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyOfflineWorldSessionLease:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++++++++++  ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestRunner]: Running test batch 'lodOnlyTicketMutation:0' (1 tests)...
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X++++++++++++++++++++++++++++++++++++++++++ ]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: [+X+++++++++++++++++++++++++++++++++++++++++++]
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: ========= 45 GAME TESTS COMPLETE IN 6.624 s ======================
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: 1 required tests failed :(
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]:    - inspectsmetadataproducedbyminecraftchunkserializer
+[02:25:29] [Server thread/INFO] [minecraft/GameTestServer]: ====================================================
+[02:25:29] [Server thread/INFO] [LSS/]: Stopping LSS LOD generation admissions before final world save
+[02:25:29] [Server thread/INFO] [minecraft/MinecraftServer]: Stopping server
+[02:25:29] [Server thread/INFO] [minecraft/MinecraftServer]: Saving players
+[02:25:29] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: test-mock-player lost connection: Server closed
+[02:25:29] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player left the game
+[02:25:29] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: test-mock-player lost connection: Server closed
+[02:25:29] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player left the game
+[02:25:30] [Server thread/INFO] [minecraft/ServerGamePacketListenerImpl]: test-mock-player lost connection: Server closed
+[02:25:30] [Server thread/INFO] [minecraft/MinecraftServer]: test-mock-player left the game
+[02:25:30] [Server thread/INFO] [minecraft/MinecraftServer]: Saving worlds
+[02:25:30] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:overworld
+[02:25:33] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_nether
+[02:25:33] [Server thread/INFO] [minecraft/MinecraftServer]: Saving chunks for level 'ServerLevel[Test Level]'/minecraft:the_end
+[02:25:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[02:25:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[02:25:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[02:25:33] [Server thread/INFO] [minecraft/MinecraftServer]: ThreadedAnvilChunkStorage: All dimensions are saved
+[02:25:33] [Server thread/INFO] [LSS/]: Stopping LSS LOD request processing service
+[02:25:33] [LSS Store Backfill/INFO] [LSS/]: Store backfill stopped: 6 regions, 46 deposited, 841 skipped, 0 errors, 5 pauses
+[02:25:33] [Server thread/INFO] [minecraft/GameTestServer]: Game test server shutting down
 
 > Task :neoforge:runGameTestServer FAILED
 
@@ -225,5 +239,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/9.5.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD FAILED in 24s
-24 actionable tasks: 1 executed, 23 up-to-date
+BUILD FAILED in 25s
+14 actionable tasks: 2 executed, 12 up-to-date
