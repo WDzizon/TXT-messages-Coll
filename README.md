@@ -2,21 +2,20 @@ cd ~/lod-server-support-lod-only &&
 > git pull --ff-only origin feat/lod-only-preservation-1.21.1 &&
 > git log -1 --oneline &&
 > ./gradlew --console=plain :common:test :neoforge:test :neoforge:compileGametestJava :neoforge:runGameTestServer :neoforge:build
-remote: Enumerating objects: 31, done.
-remote: Counting objects: 100% (31/31), done.
-remote: Compressing objects: 100% (12/12), done.
-remote: Total 16 (delta 9), reused 0 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (16/16), 2.17 KiB | 61.00 KiB/s, done.
+remote: Enumerating objects: 29, done.
+remote: Counting objects: 100% (29/29), done.
+remote: Compressing objects: 100% (11/11), done.
+remote: Total 15 (delta 8), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (15/15), 1.41 KiB | 111.00 KiB/s, done.
 From https://github.com/WDzizon/lod-server-support-lod-only
  * branch                feat/lod-only-preservation-1.21.1 -> FETCH_HEAD
-   ebe876efa..50b15ad96  feat/lod-only-preservation-1.21.1 -> origin/feat/lod-only-preservation-1.21.1
-Updating ebe876efa..50b15ad96
+   50b15ad96..3f457a81e  feat/lod-only-preservation-1.21.1 -> origin/feat/lod-only-preservation-1.21.1
+Updating 50b15ad96..3f457a81e
 Fast-forward
- docs/planning/lod-only-preservation-plan.md                                              | 24 ++++++++++++++++++++++++
- neoforge/build.gradle                                                                    |  2 ++
- .../src/test/java/dev/vox/lss/neoforge/lodonly/LodOnlyStagedAnvilPayloadReaderTest.java  | 18 ++++++++++++++----
- 3 files changed, 40 insertions(+), 4 deletions(-)
-50b15ad96 (HEAD -> feat/lod-only-preservation-1.21.1, origin/feat/lod-only-preservation-1.21.1) Fix staged payload decoder test fixture classpath
+ docs/planning/lod-only-preservation-plan.md                                                  | 15 +++++++++++++++
+ neoforge/src/test/java/dev/vox/lss/neoforge/lodonly/LodOnlyStagedAnvilPayloadReaderTest.java |  2 +-
+ 2 files changed, 16 insertions(+), 1 deletion(-)
+3f457a81e (HEAD -> feat/lod-only-preservation-1.21.1, origin/feat/lod-only-preservation-1.21.1) Fix GZIP stream import in staged payload tests
 
 > Configure project :fabric
 Fabric Loom: 1.17.13
@@ -45,44 +44,37 @@ Targeting Minecraft '1.21.1' on a 'SERVER' platform
 > Task :neoforge:classes UP-TO-DATE
 > Task :neoforge:jarJar NO-SOURCE
 > Task :neoforge:jar SKIPPED
-> Task :neoforge:generateJarJarMetadata
+> Task :neoforge:generateJarJarMetadata UP-TO-DATE
 > Task :neoforge:shadowJar UP-TO-DATE
+> Task :neoforge:compileTestJava
+> Task :neoforge:processTestResources NO-SOURCE
+> Task :neoforge:testClasses
 
-> Task :neoforge:compileTestJava FAILED
-/home/wdzizon/lod-server-support-lod-only/neoforge/src/test/java/dev/vox/lss/neoforge/lodonly/LodOnlyStagedAnvilPayloadReaderTest.java:8: error: cannot find symbol
-import java.io.GZIPOutputStream;
-              ^
-  symbol:   class GZIPOutputStream
-  location: package java.io
-/home/wdzizon/lod-server-support-lod-only/neoforge/src/test/java/dev/vox/lss/neoforge/lodonly/LodOnlyStagedAnvilPayloadReaderTest.java:161: error: cannot find symbol
-            case 1 -> new GZIPOutputStream(bytes);
-                          ^
-  symbol:   class GZIPOutputStream
-  location: class LodOnlyStagedAnvilPayloadReaderTest
-2 errors
+> Task :neoforge:test FAILED
 
-[Incubating] Problems report is available at: file:///home/wdzizon/lod-server-support-lod-only/build/reports/problems/problems-report.html
+LodOnlyStagedAnvilPayloadReaderTest > rejectsCompressedAndExpandedPayloadsOverTheirIndependentLimits() FAILED
+    org.opentest4j.AssertionFailedError at LodOnlyStagedAnvilPayloadReaderTest.java:85
+        Caused by: java.lang.NoClassDefFoundError at LodOnlyStagedAnvilPayloadReaderTest.java:86
+            Caused by: java.lang.ClassNotFoundException at LodOnlyStagedAnvilPayloadReaderTest.java:86
+
+LodOnlyStagedAnvilPayloadReaderTest > decodesAllBuiltInMinecraftCompressionFormatsWithoutChangingSourceOrStage() FAILED
+    java.lang.NoClassDefFoundError at LodOnlyStagedAnvilPayloadReaderTest.java:40
+        Caused by: java.lang.ClassNotFoundException at LodOnlyStagedAnvilPayloadReaderTest.java:40
+
+LodOnlyStagedAnvilPayloadReaderTest > decodesExternalMccPayloadUsingTheRegionCompressionMarker() FAILED
+    java.lang.NoClassDefFoundError at LodOnlyStagedAnvilPayloadReaderTest.java:65
+        Caused by: java.lang.ClassNotFoundException at LodOnlyStagedAnvilPayloadReaderTest.java:65
+
+87 tests completed, 3 failed
 
 FAILURE: Build failed with an exception.
 
 * What went wrong:
-Execution failed for task ':neoforge:compileTestJava' (registered by plugin class 'org.gradle.api.plugins.JavaBasePlugin').
-> Compilation failed; see the compiler output below.
-  /home/wdzizon/lod-server-support-lod-only/neoforge/src/test/java/dev/vox/lss/neoforge/lodonly/LodOnlyStagedAnvilPayloadReaderTest.java:8: error: cannot find symbol
-  import java.io.GZIPOutputStream;
-                ^
-    symbol:   class GZIPOutputStream
-    location: package java.io
-  /home/wdzizon/lod-server-support-lod-only/neoforge/src/test/java/dev/vox/lss/neoforge/lodonly/LodOnlyStagedAnvilPayloadReaderTest.java:161: error: cannot find symbol
-              case 1 -> new GZIPOutputStream(bytes);
-                            ^
-    symbol:   class GZIPOutputStream
-    location: class LodOnlyStagedAnvilPayloadReaderTest
-  2 errors
+Execution failed for task ':neoforge:test'.
+> There were failing tests. See the report at: file:///home/wdzizon/lod-server-support-lod-only/neoforge/build/reports/tests/test/index.html
 
 * Try:
-> Check your code and dependencies to fix the compilation error(s)
 > Run with --scan to get full insights from a Build Scan (powered by Develocity).
 
-BUILD FAILED in 9s
-17 actionable tasks: 2 executed, 15 up-to-date
+BUILD FAILED in 4s
+18 actionable tasks: 2 executed, 16 up-to-date
